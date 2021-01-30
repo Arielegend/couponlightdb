@@ -13,6 +13,7 @@ class Error(Exception):
         1. Params error
         2. DynamoDB error
     """
+
     @abstractmethod
     def msg(self):
         pass
@@ -22,7 +23,8 @@ class ParamsError(Error):
     """
     Represents wrong parameters given Errors
     """
-    def __init__(self,  error_info):
+
+    def __init__(self, error_info):
         self.exec_info = error_info
 
     def msg(self):
@@ -33,7 +35,8 @@ class DBError(Error):
     """
     Represents Dynamo DB Errors
     """
-    def __init__(self,  error_info):
+
+    def __init__(self, error_info):
         self.exec_info = error_info
 
     def msg(self):
@@ -94,7 +97,7 @@ def check_code_without_spaces(code: str):
     Args:
         1. code (str): the code we want to check
     Note:
-        Fixing the codes input from the Return coupons form.
+        Part of fixing the codes input proccess.
     Returns:
          Boolean if code contains any space notes in it
     """
@@ -102,18 +105,16 @@ def check_code_without_spaces(code: str):
 
 
 def check_get_response(response: dict) -> bool:
-        """
-        Args:
-            1. response: the response we get from getting a coupon based on its domain and value
-        Returns:
-            booleans indicates if response is valid
-        Raise:
-            Exception in case response is bad
-        """
-        try:
-            if response['ResponseMetadata']['HTTPStatusCode'] == 200:
-                pass
+    """
+    Args:
+        1. response: the response we get from getting a coupon based on its domain and value
+    Raise:
+        Exception in case scan response is bad
+    """
+    try:
+        if response['ResponseMetadata']['HTTPStatusCode'] == 200:
+            pass
 
-        except:
-            err = DBError(str(json.dumpls(response)))
-            raise Exception(err.msg())
+    except:
+        err = DBError(str(json.dumpls(response)))
+        raise Exception(err.msg())
