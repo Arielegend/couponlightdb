@@ -58,7 +58,7 @@ class DB(object):
             Exception in case of bad push
         """
 
-        # Setting table and item to put
+        # Setting item to put
         item = {'code': coupon.getCode(), 'value': coupon.getValue(), 'domain': coupon.getDomain()}
 
         try:
@@ -84,7 +84,6 @@ class DB(object):
         Raise:
             Exception in case of bad scan
         """
-        # Setting table
 
         try:
             # We look for a coupon with domain and value, both EQUAL to given parameters
@@ -106,7 +105,7 @@ class DB(object):
                 }
                 return response
 
-            # Meaning we found at least 1 coupon
+            # Meaning scan is not empty
             else:
                 # Constructing coupon from fetched results
                 # Taking always the first Item
@@ -128,7 +127,7 @@ class DB(object):
             err = DBError(json.dumps(err_helper))
             raise Exception(err.msg())
 
-    def delete_coupon(self, code: str, domain: str) -> bool:
+    def delete_coupon(self, code: str, domain: str):
         """
         Args:
             1. code (str): coupon's code for deletion

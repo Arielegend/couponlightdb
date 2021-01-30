@@ -34,7 +34,7 @@ def getCoupon():
         # Setting value as its valid Integer
         value_fixed = int(value)
 
-        # Fetching a single coupon by domain and value keys.
+        # Fetching a single coupon by domain and value.
         # Errors are handled at DB object
         response = dynamo_db.get_coupon_by_domain_and_value(domain=domain, value=value_fixed)
 

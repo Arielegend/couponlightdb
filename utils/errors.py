@@ -1,8 +1,7 @@
 import json
 from abc import abstractmethod
 
-__TableDoesntExistMsg__ = "\nCoupons table doesnt exist. Try build it first using the build table button"
-__GetCouponParamsMsg__ = "\nValue must be Integer in range [0,99].\nAnd domains name must be a bigger than 1"
+__GetCouponParamsMsg__ = "\nValue must be an Integer in range [0,99].\nAnd domains name must be at least of length 1"
 __ReturnCouponsParamsMsg__ = "\nValue must be an Integer in range [0,99] \nAt least 1 coupon code, and a valid domain"
 
 
@@ -28,7 +27,7 @@ class ParamsError(Error):
         self.exec_info = error_info
 
     def msg(self):
-        return f"Error: wrong Params error occured {self.exec_info}"
+        return f"Error: wrong Params error occurred\n {self.exec_info}"
 
 
 class DBError(Error):
@@ -40,7 +39,7 @@ class DBError(Error):
         self.exec_info = error_info
 
     def msg(self):
-        return f"Error: dynamo db error occured\n {self.exec_info}"
+        return f"Error: dynamo DB error occurred\n {self.exec_info}"
 
 
 def check_getCoupon_inputs(value: str, domain: str) -> None:
