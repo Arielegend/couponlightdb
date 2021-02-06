@@ -2,7 +2,11 @@
 Coupons server
 </h2>
 
-*** 
+<p>Welcome to my coupons service using AWS DynamoDB light container</p>
+<p>This service will allow u own your own amazing coupons service!</p>
+<p>Just Enter as many coupons by domain_name, coupon_value(must be positive integer less than 100), and a coupon_code</p>
+<p>See usage via postman at the buttom</p>
+
 
 ## Installation
 
